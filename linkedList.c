@@ -99,3 +99,61 @@ void printList(Node * head)
         printf("\n\r");
     }
 }
+
+Node* reverseList(Node * head)
+{
+	Node * curr = head, *prev = NULL, *next = NULL;
+	
+	while(curr && curr->next != NULL)
+	{
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+	
+	head = curr;
+	return head;
+}
+
+void deleteList(Node * head)
+{
+	Node * next = NULL, *curr = head;
+	
+	while(curr && curr->next != NULL)
+	{
+		next = curr->next;
+		free(curr);
+		curr = next;
+	}
+}
+
+Node* deleteNode(Node * head, int data)
+{
+	Node * curr = head, *next = NULL, *prev = NULL;
+	
+	while(curr && curr->next!= NULL)
+	{
+		next = curr->next;
+		
+		if(curr->data == data)
+		{
+			curr->next = NULL;
+			free(curr);
+			
+			if(prev != NULL)
+				prev->next == next;
+				
+			break;
+		}
+		else
+		{
+			prev = prev->next;
+		}
+		
+		curr = next;
+	}
+	
+	return head;
+}
+
